@@ -13,7 +13,9 @@
 - memory：存储在堆上，不需要gas
 - calldata：存储在栈上，不需要gas，与memory类似，但只读
 ##### ABI && Function Selector
-- 
+-
+##### 数字签名
+- ECDSA，椭圆曲线数字签名算法
 ##### 事件
 > 是虚拟机上日志的抽象，具备两个特点
 >

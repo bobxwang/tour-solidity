@@ -12,6 +12,8 @@
 - storage：存储在区块链上，需要gas
 - memory：存储在堆上，不需要gas
 - calldata：存储在栈上，不需要gas，与memory类似，但只读
+##### ABI && Function Selector
+- 
 ##### 事件
 > 是虚拟机上日志的抽象，具备两个特点
 >
@@ -53,6 +55,7 @@ fallback() external payable { }
 - call：如果转账失败，不会revert，返回值是(bool,data)，无Gas限制，最优选择
 ##### 合约调用其它合约
 - call
+- staticcall
 - delegatecall，代理合约的时候一般会用到，还有一个是钻石？提供了一定灵活性，但要确保当前合约跟目标合约状态变量存储结构一致，否则会出问题
 ##### ERC721
 > BTC/ETH这类属于同质化代币，其第一枚跟后面挖出来的没啥区别，是等价的。但世界上很多物品是不同的，比如房产/古董，这类物品无法用同质化代币抽象，因此以太坊EIP721提出了ERC721标准来抽象非同质化的物品，基于这个ERC721标准可发行NFT，在ERC721中，每个代币都有一个tokenId作为唯一标识，每个tokenId只对应一个代币

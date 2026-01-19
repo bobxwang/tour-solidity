@@ -6,6 +6,8 @@
 - immutable：不可变量，在构造函数是赋值，同样不占用变量存储空间
 - external：外部，只能被其他合约调用，但可以用 ```this.f()``` f是函数名，不能修饰状态变量
 - internal：只能从合约内部访问，继承的合约也可以，相当于 ```protected```，默认修饰类
+##### 函数修改器
+- modifier
 ##### 三个数据位置
 - storage：存储在区块链上，需要gas
 - memory：存储在堆上，不需要gas
@@ -21,9 +23,9 @@
 event Transfer(address indexed from, address indexed to, uint256 value);
 ```
 ##### 异常
-- Error：抛出异常，方便且高效，省Gas，是0.8.4之后新加的内容
-- Require：要求条件为真，否则抛出异常。其缺点是gas消耗随着描述异常的字符串长度增长而增大，比error命令要高
-- assert：消耗Gas次之
+- revert： 抛出异常，方便且高效，省Gas，是0.8.4之后新加的内容
+- require：要求条件为真，否则抛出异常。其缺点是gas消耗随着描述异常的字符串长度增长而增大，比error命令要高，场景如检查用户输入值
+- assert：消耗Gas次之，用于函数内部逻辑错误
 ```solidity
 error TransferNotOwner(address sender);
 function transfer(uint256 tokenId, address newOwner) public {
@@ -34,6 +36,7 @@ function transfer(uint256 tokenId, address newOwner) public {
 }
 ```
 ##### 接收ETH
+> 一个合约最多有一个receive函数，同样最多也只能有一个fallback，对合约做任意函数调用若失败都会回退到fallback这个函数
 - receive函数，不能有任何参数也不能有任何返回，必须包含external跟payable关键字，不能太复杂，复杂会触发out of gas
 - fallback函数，在调用合约不存在的函数时触发，同样也可用于接收ETH
 ```solidity
